@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import pkg from '../package.json'
+import productRouter from '../src/routes/product.route'
 
 const app = express();
 
@@ -16,7 +17,8 @@ app.get('/', (req, res) => {
         "Description": app.set('pkg').description,
         "Version": app.set('pkg').version
     });
-
 });
+
+app.use('/product', productRouter);
 
 export default app;

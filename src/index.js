@@ -1,4 +1,5 @@
 import app from './app.js'
+import './database'
 
 //Esto es para buscar un puerto
 app.set('port', process.env.PORT || 4000);
