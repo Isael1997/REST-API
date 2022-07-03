@@ -1,8 +1,8 @@
 {
   "name": "rest-api-with-database-roles",
   "version": "1.0.0",
-  "description": "",
-  "type": "module",
+  "description": "My First REST API with DataBase",
+  
   "main": "index.js",
   "scripts": {
     "build": "babeL src --out-dir build",
@@ -10,7 +10,7 @@
     "start": "node build/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ronald",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
