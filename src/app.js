@@ -21,6 +21,6 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/product', productRouter);
+app.use('/api/product', productRouter);
 
 export default app;
