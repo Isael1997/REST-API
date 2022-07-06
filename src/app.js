@@ -8,7 +8,9 @@ const app = express();
 app.use(morgan('dev'));
 
 app.set('pkg', pkg);
-app.set('json spaces', 2);
+app.use(express.json());/*para indentificar que entienda los formatos .json,
+esto aplica para todas las conexiones que tienen.*/
+app.set('json spaces', 2);//para darle un espacio a los datos .json
 
 app.get('/', (req, res) => {
     res.json({
