@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import * as productCtrl from '../controllers/productController'
+import * as productCtrl from '../controllers/product.Controller'
 const router = Router();
 
 router.post('/', productCtrl.createProduct);

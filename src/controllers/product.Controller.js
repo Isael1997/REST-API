@@ -1,5 +1,5 @@
 import { response } from "express";
-import product from "../routes/product";
+import product from "../models/product";
 
 export const createProduct = async (req, res) => {
     //Destruturing para coger todo los datos en req.body de uno en uno
