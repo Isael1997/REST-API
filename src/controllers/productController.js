@@ -16,19 +16,29 @@ export const createProduct = async (req, res) => {
 }
 
 export const getProduct = async (req, res) => {
+    
     const products = await product.find();
     res.json(products);
 }
+
 export const getProductById = async (req, res) => {
     
     const products = await product.findById(req.params.productId);
-    console.log(products);
-
     res.status(200).json(products);
 }
-export const updateProductById = (req, res) => {
 
+export const updateProductById = async (req, res) => {
+    
+    const updatedProduct = await product.findByIdAndUpdate(req.params.productId, 
+        req.body,{
+            new: true,
+        });
+    res.status(200).json(updatedProduct);
 }
-export const deleteProductById = (req, res) => {
 
+export const deleteProductById = async (req, res) => {
+    
+    const {productId} = req.params;
+    await product.findByIdAndDelete(productId);
+    res.status(204).json();
 }
