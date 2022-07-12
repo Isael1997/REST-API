@@ -3,8 +3,10 @@ import morgan from 'morgan'
 import pkg from '../package.json'
 import productRouter from '../src/routes/product.route'
 import auth from '../src/routes/auth.route'
+import {createRole} from './libs/initial Setup'
 
 const app = express();
+createRole();
 
 app.use(morgan('dev'));
 
