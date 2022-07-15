@@ -8,7 +8,8 @@ export const SignIn = async (req, res) => {
         const { username, email, password, roles } = req.body;
         const userFound = await user.findOne({ email: req.body.email });
         const matchpassword = await user.comparePassword(req.body.password, userFound);
-
+        console.log(userFound);
+        console.log(matchpassword);
         if (!userFound) {
             return res.status(400).json({ message: "User not Found" });
         }else if (userFound == true){
@@ -18,8 +19,12 @@ export const SignIn = async (req, res) => {
                     message: "Invalid Password"
                 });
             }else{
-                const token = jwt.sign({ id: userFound._id }, config.secret, { expiresIn: 86400 });
-                res.status().json({ token });
+                const token = jwt.sign(
+                    { id: userFound._id }, 
+                    config.secret, 
+                    { expiresIn: 86400 }
+                    );
+                res.json({ token });
             }
         }         
     } catch (error) {

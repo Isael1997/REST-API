@@ -1,8 +1,10 @@
 import {Router} from 'express'
 import * as productCtrl from '../controllers/product.Controller'
+import {authJwt} from '../middlewares/index'
+
 const router = Router();
 
-router.post('/', productCtrl.createProduct);
+router.post('/', authJwt.verifyToken, productCtrl.createProduct);
 
 router.get('/', productCtrl.getProduct);
 
