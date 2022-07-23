@@ -36,6 +36,7 @@ export const isModerate = async (req, res, next) => {
         return res.status(403).json({ message: "Require Moderator Role!" });
     } catch (error) {
         console.log(error);
+        return res.status(500).send({ message: error });
         
     }
 }
@@ -53,5 +54,6 @@ export const isAdmin = async (req, res, next) => {
         return res.status(403).json({ message: "Require Aministrator Role!" });
     } catch (error) {
         console.log(error);
+        return res.status(500).send({ message: error });
     }
 }
