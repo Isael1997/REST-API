@@ -24,11 +24,9 @@ export const verifyToken = async (req, res, next) => {
 }
 
 export const isModerate = async (req, res, next) => {
-
     try {
         const User = await user.findById(req.userId);
         const roles = await Role.find({ _id: { $in: User.roles } });
-    
         for (let i = 0; i < roles.length; i++) {
             if (roles[i].name === "moderate") {
                 next();
@@ -43,5 +41,17 @@ export const isModerate = async (req, res, next) => {
 }
 
 export const isAdmin = async (req, res, next) => {
-
+    try {
+        const User = await user.findById(req.userId);
+        const roles = await Role.find({ _id: { $in: User.roles } });
+        for (let i = 0; i < roles.length; i++) {
+            if (roles[i].name === "admin") {
+                next();
+                return;
+            }
+        }
+        return res.status(403).json({ message: "Require Aministrator Role!" });
+    } catch (error) {
+        console.log(error);
+    }
 }
