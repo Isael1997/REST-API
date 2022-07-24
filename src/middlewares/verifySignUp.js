@@ -1,21 +1,21 @@
 import user from "../models/user";
 import { Role } from "../models/roles";
 
-const checkDuplicateUsernameOrEmail = async (req, res, next) => {
-  try {
-    const User = await user.findOne({ username: req.body.username });
-    if (User) {
-      return res.status(400).json({ message: "The user already exists" });
+export const checkDuplicateUsernameOrEmail = async (req, res, next) => {
+    try {
+        const User = await user.findOne({ username: req.body.username });
+        if (User) {
+            return res.status(400).json({ message: "The user already exists" });
+        }
+        const email = await user.findOne({ email: req.body.email });
+        if (email) {
+            return res.status(400).json({ message: "The email already exists" });
+        }
+        next();
+    } catch (error) {
+        return res.status(500).json({ message: error });
     }
-    const email = await user.findOne({ email: req.body.email });
-    if (email) {
-      return res.status(400).json({ message: "The email already exists" });
-    }
-    next();
-  } catch (error) {
-    res.status(500).json({ message: error });
-  }
-};
+}
 
 /*const checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
@@ -31,4 +31,4 @@ const checkDuplicateUsernameOrEmail = async (req, res, next) => {
   next();
 };*/
 
-export { checkDuplicateUsernameOrEmail};
+

@@ -3,6 +3,7 @@ import morgan from 'morgan'
 import pkg from '../package.json'
 import productRouter from '../src/routes/product.route'
 import auth from '../src/routes/auth.route'
+import user from '../src/routes/user.route'
 import {createRole} from './libs/initial Setup'
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());/*para indentificar que entienda los formatos .json,
 esto aplica para todas las conexiones que tienen.*/
 app.set('json spaces', 2);//para darle un espacio a los datos .json
 
+
 app.get('/', (req, res) => {
     res.json({
         "Name": app.set('pkg').name,
@@ -26,5 +28,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/product', productRouter);
 app.use('/api/auth', auth);
+app.use('/api/createuser', user);
 
 export default app;
